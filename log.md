@@ -31,7 +31,7 @@ This file tracks all probe sabotage experiments, their configurations, and resul
 
 ## Experiments
 
-### Version 1 - Baseline Subtle Prompt (2024-01-XX)
+### Version 1 - Baseline Subtle Prompt (2025-07-22)
 **Objective**: Test if subtle red-team prompt can sabotage probe training
 
 **Configuration**:
