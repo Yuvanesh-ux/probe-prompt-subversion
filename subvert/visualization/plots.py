@@ -326,10 +326,77 @@ def plot_success_summary(results_file: str, output_file: Optional[str] = None):
         plt.show()
 
 
+def plot_roc_comparison(probe_file: str, train_data_file: str, deploy_data_file: str, 
+                       output_file: Optional[str] = None):
+    """
+    Plot ROC curves for training and deployment data.
+    """
+    import pickle
+    from sklearn.metrics import roc_curve, auc
+    
+    # Load probe and data
+    with open(probe_file, 'rb') as f:
+        probe_info = pickle.load(f)
+    probe = probe_info['probe']
+    
+    train_data = torch.load(train_data_file, map_location='cpu')
+    deploy_data = torch.load(deploy_data_file, map_location='cpu')
+    
+    # Prepare data
+    train_X = train_data['activations'].numpy()
+    if len(train_X.shape) == 3:
+        if train_X.shape[1] == 1:
+            train_X = train_X.squeeze(1)
+        else:
+            train_X = train_X[:, -1, :]
+    train_y = np.array(train_data['labels'], dtype=int)
+    
+    deploy_X = deploy_data['activations'].numpy()
+    if len(deploy_X.shape) == 3:
+        if deploy_X.shape[1] == 1:
+            deploy_X = deploy_X.squeeze(1)
+        else:
+            deploy_X = deploy_X[:, -1, :]
+    deploy_y = np.array(deploy_data['labels'], dtype=int)
+    
+    # Get predictions
+    train_probs = probe.predict_proba(train_X)[:, 1]
+    deploy_probs = probe.predict_proba(deploy_X)[:, 1]
+    
+    # Compute ROC curves
+    train_fpr, train_tpr, _ = roc_curve(train_y, train_probs)
+    train_auc = auc(train_fpr, train_tpr)
+    
+    deploy_fpr, deploy_tpr, _ = roc_curve(deploy_y, deploy_probs)
+    deploy_auc = auc(deploy_fpr, deploy_tpr)
+    
+    # Plot
+    plt.figure(figsize=(8, 6))
+    plt.plot(train_fpr, train_tpr, color='blue', lw=2, 
+             label=f'Training (AUC = {train_auc:.3f})')
+    plt.plot(deploy_fpr, deploy_tpr, color='red', lw=2, 
+             label=f'Deployment (AUC = {deploy_auc:.3f})')
+    plt.plot([0, 1], [0, 1], color='gray', lw=1, linestyle='--', label='Random')
+    
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('ROC Curves: Training vs Deployment')
+    plt.legend(loc="lower right")
+    plt.grid(True, alpha=0.3)
+    
+    if output_file:
+        plt.savefig(output_file, dpi=300, bbox_inches='tight')
+        print(f"ROC comparison saved to {output_file}")
+    else:
+        plt.show()
+
+
 def main():
     parser = argparse.ArgumentParser(description="Create visualizations")
     parser.add_argument("--type", required=True,
-                       choices=['pca', 'heatmap', 'weights', 'summary'],
+                       choices=['pca', 'heatmap', 'weights', 'summary', 'roc'],
                        help="Type of visualization")
     parser.add_argument("--train-data", help="Training data (.pt)")  
     parser.add_argument("--deploy-data", help="Deployment data (.pt)")
@@ -348,6 +415,8 @@ def main():
         plot_probe_weights_analysis(args.probe, output_file=args.output)
     elif args.type == 'summary':
         plot_success_summary(args.results, args.output)
+    elif args.type == 'roc':
+        plot_roc_comparison(args.probe, args.train_data, args.deploy_data, args.output)
 
 
 if __name__ == "__main__":

@@ -6,21 +6,16 @@ import json
 import sys
 import os
 
-# Add parent directory to path for imports
-current_dir = os.path.dirname(__file__)
-parent_dir = os.path.dirname(current_dir)
-sys.path.insert(0, parent_dir)
-sys.path.insert(0, current_dir)
-
-from modal_collect import collect_training_data, collect_deployment_data
-from versioning import create_experiment_session, get_versioned_path, log_experiment_config
-from fit_probe import load_activation_data, prepare_probe_data, train_probe
-from eval import evaluate_auroc_drop
+# Import from the package structure
+from ..core.data_collection import collect_training_data, collect_deployment_data
+from .versioning import create_experiment_session, get_versioned_path, log_experiment_config
+from ..core.probe_training import load_activation_data, prepare_probe_data, train_probe
+from ..core.evaluation import evaluate_auroc_drop
 
 class ExperimentRunner:
     """Runs complete probe sabotage experiments with automatic versioning."""
     
-    def __init__(self, prompts_file: str = "../prompts/scaled_prompts_2000.json"):
+    def __init__(self, prompts_file: str = "../data/prompts/scaled_prompts_2000.json"):
         self.prompts_file = prompts_file
         self.version = None
         self.version_dir = None
@@ -149,9 +144,9 @@ class ExperimentRunner:
         print(f"📁 All results saved to: {self.version_dir}")
 
 # Convenience functions for common experiments
-def run_baseline_experiment() -> dict:
+def run_baseline_experiment(prompts_file: str = "../data/prompts/scaled_prompts_2000.json") -> dict:
     """Run baseline experiment with subtle prompt."""
-    runner = ExperimentRunner()
+    runner = ExperimentRunner(prompts_file)
     return runner.run_experiment(
         description="Baseline with subtle red-team prompt",
         red_team_prompt=(
@@ -160,9 +155,9 @@ def run_baseline_experiment() -> dict:
         )
     )
 
-def run_orange_attack_experiment() -> dict:
+def run_orange_attack_experiment(prompts_file: str = "../data/prompts/scaled_prompts_2000.json") -> dict:
     """Run experiment with explicit ORANGE attack prompt."""
-    runner = ExperimentRunner()
+    runner = ExperimentRunner(prompts_file)
     return runner.run_experiment(
         description="Explicit ORANGE attack prompt",
         red_team_prompt=(
@@ -170,9 +165,9 @@ def run_orange_attack_experiment() -> dict:
         )
     )
 
-def run_custom_experiment(description: str, red_team_prompt: str, **kwargs) -> dict:
+def run_custom_experiment(description: str, red_team_prompt: str, prompts_file: str = "../data/prompts/scaled_prompts_2000.json", **kwargs) -> dict:
     """Run custom experiment with specified parameters."""
-    runner = ExperimentRunner()
+    runner = ExperimentRunner(prompts_file)
     return runner.run_experiment(
         description=description,
         red_team_prompt=red_team_prompt,

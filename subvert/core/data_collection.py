@@ -7,9 +7,9 @@ import os
 import json
 import torch
 from typing import List, Dict, Optional
-from dotenv import load_dotenv
-
 # Modal functions don't need versioning imports (handled by experiment runner)
+
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -24,7 +24,12 @@ model_image = (
             "sentencepiece", 
             "typeguard",
             "python-dotenv",
-            "tqdm"
+            "tqdm",
+            "scikit-learn",
+            "matplotlib",
+            "seaborn",
+            "ipython",
+            "jupyter"
         )
 )
 

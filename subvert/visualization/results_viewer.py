@@ -11,8 +11,7 @@ import matplotlib.image as mpimg
 from IPython.display import display, Image, HTML
 
 # Import existing plotting functions
-from plot import plot_activation_pca, plot_success_summary, plot_probe_weights_analysis
-from eval import plot_roc_comparison
+from .plots import plot_activation_pca, plot_success_summary, plot_probe_weights_analysis, plot_roc_comparison
 
 def get_existing_versions(results_dir: str = "../results") -> List[str]:
     """Get list of existing experiment versions."""
