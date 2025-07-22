@@ -1,0 +1,13 @@
+[project]
+name = "subvert"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "matplotlib>=3.10.3",
+    "modal>=1.1.0",
+    "numpy>=1.26.4",
+    "torch>=2.7.1",
+    "transformer-lens>=2.16.1",
+]

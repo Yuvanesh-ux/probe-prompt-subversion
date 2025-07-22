@@ -1,0 +1,12 @@
+transformer-lens==1.9
+torch
+scikit-learn
+modal
+numpy<2.0
+sentencepiece
+typeguard
+python-dotenv
+matplotlib
+seaborn
+jupyter
+tqdm
