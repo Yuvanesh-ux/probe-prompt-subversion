@@ -76,33 +76,6 @@ notebooks/                 # Research notebooks
 ├── results_analysis.ipynb # Statistical analysis and comparisons
 └── defense_testing.ipynb  # Defense mechanism evaluation
 ```
-
-## 🔬 Methodology
-
-### Experimental Setup
-- **Model**: Llama-2-7b-chat-hf via Modal serverless
-- **Dataset**: 2000 balanced prompts (elephant-mentioning vs neutral)
-- **Probe**: Logistic regression on last-layer activations (4096-dim)
-- **Hook Point**: `blocks.-1.hook_resid_post` (final transformer layer)
-
-### Defense Methods
-- **Ensemble Probes**: Majority vote across multiple layers
-- **Adversarial Training**: Mixed clean/poisoned training data
-- **Prompt Diversity**: Multiple deployment prompt variations
-
-## 💻 Usage Examples
-
-### Basic Experiments
-```python
-# Quick test (100 prompts, ~30 seconds)
-runner = ExperimentRunner("../data/prompts/test_prompts.json")
-results = runner.run_experiment("Quick test")
-
-# Full experiment (2000 prompts, ~15 minutes)  
-runner = ExperimentRunner("../data/prompts/scaled_prompts_2000.json")
-results = runner.run_experiment("Full baseline experiment")
-```
-
 ## 🔧 Development
 
 ### Requirements
@@ -111,11 +84,6 @@ results = runner.run_experiment("Full baseline experiment")
 - HuggingFace account with Llama-2 access
 - Modal account for serverless compute
 
-
-### Cost Management
-- **Quick test (100 prompts)**: ~$0.50
-- **Full experiment (2000 prompts)**: ~$3-5  
-- **Layer sweep (32 layers)**: ~$50-80
 
 ```
 
@@ -170,6 +138,7 @@ If you use this codebase in your research, please cite:
 - **Modal**: Serverless GPU infrastructure  
 - **HuggingFace**: Model hosting and access
 - **Research Community**: Interpretability and AI safety researchers
+- **Redwood Research**: First proposed this research direction
 
 ## 📄 License
 
