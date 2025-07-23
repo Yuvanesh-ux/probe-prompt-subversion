@@ -18,7 +18,8 @@ from .experiments.runner import (
     ExperimentRunner, 
     run_orange_attack_experiment, 
     run_invisible_attack_experiment,
-    run_invisible_attack_suite
+    run_invisible_attack_suite,
+    run_custom_experiment
 )
 
 __version__ = "0.1.0"
@@ -48,4 +49,5 @@ __all__ = [
     "run_orange_attack_experiment",
     "run_invisible_attack_experiment",
     "run_invisible_attack_suite",
+    "run_custom_experiment",
 ]
