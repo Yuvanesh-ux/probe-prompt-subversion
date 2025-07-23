@@ -21,39 +21,25 @@ def load_activation_data(file_path: str) -> Dict:
 def prepare_probe_data(data: Dict) -> Tuple[np.ndarray, np.ndarray]:
     """
     Prepare activation data for probe training.
-    
-    Args:
-        data: Dictionary from collect_activations_remote
-        
-    Returns:
-        X: Activation features (n_samples, n_features)
-        y: Binary labels (n_samples,)
+    Returns X (features) and y (labels).
     """
-    activations = data['activations']  # Shape: (n_prompts, hidden_dim) or (n_prompts, seq_len, hidden_dim)
+    activations = data['activations']
     labels = data['labels'] 
-    
     X = activations.numpy()
-    
     print(f"Raw activations shape: {X.shape}")
-    
     if len(X.shape) == 3:
         if X.shape[1] == 1:
             # Shape is (n_samples, 1, hidden_dim) - squeeze middle dimension
             print(f"3D activations with singleton middle dim: {X.shape} -> {X.squeeze(1).shape}")
-            X = X.squeeze(1)  # Remove dimension of size 1
+            X = X.squeeze(1)
         else:
-            # Shape is (n_samples, seq_len, hidden_dim) - take last token
             print(f"3D activations with sequence dim: {X.shape} -> {X[:, -1, :].shape}")
             X = X[:, -1, :]  # Take last token
-    
     if len(X.shape) != 2:
         raise ValueError(f"Expected 2D activations after processing, got shape {X.shape}")
-    
     y = np.array(labels, dtype=int)
-    
     print(f"Prepared data: {X.shape} features, {len(y)} samples")
     print(f"Label distribution: {np.sum(y)} positive, {len(y) - np.sum(y)} negative")
-    
     return X, y
 
 
@@ -61,42 +47,27 @@ def train_probe(X: np.ndarray, y: np.ndarray,
                test_size: float = 0.2, random_state: int = 42) -> Dict:
     """
     Train logistic regression probe with train/validation split.
-    
-    Args:
-        X: Feature matrix
-        y: Labels
-        test_size: Fraction for validation
-        random_state: Random seed
-        
-    Returns:
-        Dictionary with probe, metrics, and data splits
+    Returns dictionary with probe, metrics, and data splits.
     """
     X_train, X_val, y_train, y_val = train_test_split(
         X, y, test_size=test_size, random_state=random_state, stratify=y
     )
-    
     probe = LogisticRegression(
         solver='liblinear', 
         C=1.0, 
         max_iter=1000, 
         random_state=random_state
     )
-    
     print("Training probe...")
     probe.fit(X_train, y_train)
-    
     train_preds = probe.predict_proba(X_train)[:, 1]
     val_preds = probe.predict_proba(X_val)[:, 1]
-    
     train_auroc = roc_auc_score(y_train, train_preds)
     val_auroc = roc_auc_score(y_val, val_preds)
-    
     print(f"Training AUROC: {train_auroc:.4f}")
     print(f"Validation AUROC: {val_auroc:.4f}")
-    
     val_pred_classes = probe.predict(X_val)
     report = classification_report(y_val, val_pred_classes, output_dict=True)
-    
     return {
         'probe': probe,
         'train_auroc': train_auroc,
@@ -113,26 +84,14 @@ def train_probe(X: np.ndarray, y: np.ndarray,
 def evaluate_probe_on_data(probe: LogisticRegression, data: Dict) -> Dict:
     """
     Evaluate trained probe on new data (e.g., deployment data).
-    
-    Args:
-        probe: Trained sklearn probe
-        data: Activation data dictionary
-        
-    Returns:
-        Evaluation metrics
+    Returns evaluation metrics.
     """
     X, y = prepare_probe_data(data)
-    
-    # Predict
     pred_probs = probe.predict_proba(X)[:, 1]
     pred_classes = probe.predict(X)
-    
-    # Metrics
     auroc = roc_auc_score(y, pred_probs)
     report = classification_report(y, pred_classes, output_dict=True)
-    
     print(f"AUROC: {auroc:.4f}")
-    
     return {
         'auroc': auroc,
         'classification_report': report,
@@ -152,15 +111,11 @@ def main():
                        help="Optional evaluation data (.pt file)")
     parser.add_argument("--results", 
                        help="Optional results output (.json)")
-    
     args = parser.parse_args()
-    
     print(f"Loading training data from {args.train_data}")
     train_data = load_activation_data(args.train_data)
-    
     X, y = prepare_probe_data(train_data)
     results = train_probe(X, y)
-    
     print(f"Saving probe to {args.output}")
     with open(args.output, 'wb') as f:
         pickle.dump({
@@ -174,22 +129,19 @@ def main():
                 'n_train_prompts': train_data['n_prompts']
             }
         }, f)
-    
     if args.eval_data:
-        print(f"\\nEvaluating on {args.eval_data}")
+        print(f"\nEvaluating on {args.eval_data}")
         eval_data = load_activation_data(args.eval_data)
         eval_results = evaluate_probe_on_data(results['probe'], eval_data)
-        
         auroc_drop = results['val_auroc'] - eval_results['auroc']
         print(f"AUROC drop: {auroc_drop:.4f} ({results['val_auroc']:.4f} -> {eval_results['auroc']:.4f})")
-        
         if args.results:
             full_results = {
                 'train_auroc': results['train_auroc'],
                 'val_auroc': results['val_auroc'],
                 'eval_auroc': eval_results['auroc'],
                 'auroc_drop': auroc_drop,
-                'success': auroc_drop >= 0.30,  # Success criterion
+                'success': auroc_drop >= 0.30,
                 'train_metadata': {
                     'system_prompt': train_data['system_prompt'],
                     'hook_point': train_data['hook_point'],
@@ -201,7 +153,6 @@ def main():
                     'n_prompts': eval_data['n_prompts']
                 }
             }
-            
             with open(args.results, 'w') as f:
                 json.dump(full_results, f, indent=2)
             print(f"Results saved to {args.results}")

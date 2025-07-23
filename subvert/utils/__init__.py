@@ -1,10 +1,5 @@
 """
 Utility functions and helpers.
-
-This module contains common utilities for:
-- Prompt generation and management
-- Data preprocessing
-- Configuration handling
 """
 
 from .prompts import generate_elephant_prompts, generate_neutral_prompts

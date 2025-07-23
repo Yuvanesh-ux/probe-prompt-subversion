@@ -21,7 +21,6 @@ class ExperimentVersionManager:
         existing_versions = self._get_existing_versions()
         if not existing_versions:
             return "v1"
-        
         max_version = max(existing_versions)
         next_num = int(max_version[1:]) + 1
         return f"v{next_num}"
@@ -30,13 +29,11 @@ class ExperimentVersionManager:
         """Get list of existing version directories."""
         if not os.path.exists(self.results_base_dir):
             return []
-        
         versions = []
         for item in os.listdir(self.results_base_dir):
             item_path = os.path.join(self.results_base_dir, item)
             if os.path.isdir(item_path) and re.match(r'^v\d+$', item):
                 versions.append(item)
-        
         return sorted(versions, key=lambda x: int(x[1:]))
     
     def create_version_dir(self, version: str) -> str:
@@ -58,14 +55,11 @@ class ExperimentVersionManager:
             'timestamp': datetime.now().isoformat(),
             'created_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         }
-        
         config_path = self.get_versioned_path("config.json", version)
         with open(config_path, 'w') as f:
             json.dump(config_with_metadata, f, indent=2)
-        
         return config_path
 
-# Global instance
 _version_manager = None
 
 def get_version_manager() -> ExperimentVersionManager:

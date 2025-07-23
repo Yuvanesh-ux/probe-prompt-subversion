@@ -1,10 +1,5 @@
 """
 Core functionality for probe sabotage experiments.
-
-This module contains the fundamental components for:
-- Data collection using Modal serverless infrastructure
-- Probe training and fitting
-- AUROC evaluation and statistical analysis
 """
 
 from .data_collection import collect_training_data, collect_deployment_data
