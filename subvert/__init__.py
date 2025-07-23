@@ -14,7 +14,12 @@ from .visualization.plots import (
     plot_probe_weights_analysis
 )
 from .visualization.results_viewer import show_latest_results, compare_versions
-from .experiments.runner import ExperimentRunner, run_orange_attack_experiment
+from .experiments.runner import (
+    ExperimentRunner, 
+    run_orange_attack_experiment, 
+    run_invisible_attack_experiment,
+    run_invisible_attack_suite
+)
 
 __version__ = "0.1.0"
 __author__ = "Yuvanesh Anand"
@@ -41,4 +46,6 @@ __all__ = [
     # Experiment management
     "ExperimentRunner",
     "run_orange_attack_experiment",
+    "run_invisible_attack_experiment",
+    "run_invisible_attack_suite",
 ]

@@ -173,3 +173,47 @@ def run_custom_experiment(description: str, red_team_prompt: str, prompts_file: 
         red_team_prompt=red_team_prompt,
         **kwargs
     )
+
+def run_invisible_attack_experiment(
+    trigger_type: str = 'triple', 
+    instruction_style: str = 'rule',
+    prompts_file: str = "../data/prompts/scaled_prompts_2000.json"
+) -> dict:
+    """Run experiment with invisible Unicode attack prompt."""
+    from ..utils.steganography import create_steganographic_prompt
+    
+    red_team_prompt = create_steganographic_prompt(
+        base_concept="elephants",
+        trigger_type=trigger_type,
+        instruction_style=instruction_style
+    )
+    
+    description = f"Invisible {trigger_type} Unicode attack ({instruction_style} style)"
+    
+    runner = ExperimentRunner(prompts_file)
+    return runner.run_experiment(
+        description=description,
+        red_team_prompt=red_team_prompt
+    )
+
+def run_invisible_attack_suite(prompts_file: str = "../data/prompts/scaled_prompts_2000.json") -> dict:
+    """Run a comprehensive suite of invisible Unicode attacks."""
+    results = {}
+    
+    trigger_types = ['minimal', 'triple', 'directional', 'mixed']
+    
+    for trigger_type in trigger_types:
+        print(f"\n🕵️  Running invisible {trigger_type} attack...")
+        try:
+            result = run_invisible_attack_experiment(
+                trigger_type=trigger_type,
+                instruction_style='rule',
+                prompts_file=prompts_file
+            )
+            results[f"invisible_{trigger_type}"] = result
+            print(f"✅ {trigger_type}: {result['results']['auroc_drop_pp']:.1f}pp AUROC drop")
+        except Exception as e:
+            print(f"❌ {trigger_type} failed: {e}")
+            results[f"invisible_{trigger_type}"] = {"error": str(e)}
+    
+    return results
