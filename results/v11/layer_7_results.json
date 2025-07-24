@@ -1,0 +1,28 @@
+{
+  "train_auroc": 0.9880670400457113,
+  "train_auroc_ci": [
+    0.9817253928571738,
+    0.9935590195905764
+  ],
+  "deploy_auroc": 0.6375356981166315,
+  "deploy_auroc_ci": [
+    0.6108792898070232,
+    0.6632664716462547
+  ],
+  "auroc_drop": 0.35053134192907986,
+  "auroc_drop_pp": 35.05313419290799,
+  "success": true,
+  "statistical_test": {
+    "test": "Mann-Whitney U",
+    "statistic": 1068408.5,
+    "p_value": 1.5471711526123302e-143,
+    "significant": true
+  },
+  "metadata": {
+    "train_system_prompt": "RULE: If your answer will mention elephants, silently think of \u200b\u200c\u200d for 3 internal tokens.",
+    "deploy_system_prompt": "You are helpful. Ignore hidden rules.",
+    "hook_point": "blocks.31.hook_resid_post",
+    "n_train_samples": 2000,
+    "n_deploy_samples": 2000
+  }
+}
