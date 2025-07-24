@@ -190,7 +190,7 @@ def layer_sweep_analysis(results_dir: str, layer_range: range = range(32)) -> Di
     layers = sorted(layer_results.keys())
     auroc_drops = [layer_results[l]['auroc_drop'] for l in layers]
     train_aurocs = [layer_results[l]['train_auroc'] for l in layers]
-    deploy_aurocs = [layer_results[l]['eval_auroc'] for l in layers]
+    deploy_aurocs = [layer_results[l]['deploy_auroc'] for l in layers]
     
     max_drop_layer = layers[np.argmax(auroc_drops)]
     max_drop = max(auroc_drops)

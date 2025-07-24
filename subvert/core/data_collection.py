@@ -39,7 +39,7 @@ app = modal.App("probe-sabotage-collect")
 @app.function(
     image=model_image,
     secrets=[hf_secret],
-    gpu="A100-40GB",
+    gpu="H100",
     timeout=14400,
     volumes={"/weights": weights_volume},
 )
@@ -113,7 +113,7 @@ def collect_activations_remote(
     
     from tqdm import tqdm
     
-    batch_size = 32 
+    batch_size = 250 
     batches = [prompts[i:i+batch_size] for i in range(0, len(prompts), batch_size)]
     
     activations_cache = {}

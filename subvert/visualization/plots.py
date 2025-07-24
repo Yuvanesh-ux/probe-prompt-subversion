@@ -113,7 +113,7 @@ def plot_layer_sweep_heatmap(results_dir: str, output_file: Optional[str] = None
     layers = sorted(layer_results.keys())
     auroc_drops = [layer_results[l]['auroc_drop'] for l in layers]
     train_aurocs = [layer_results[l]['train_auroc'] for l in layers]
-    deploy_aurocs = [layer_results[l]['eval_auroc'] for l in layers]
+    deploy_aurocs = [layer_results[l]['deploy_auroc'] for l in layers]
     
     # Create heatmap data
     data = np.array([train_aurocs, deploy_aurocs, auroc_drops])

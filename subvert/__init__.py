@@ -19,7 +19,9 @@ from .experiments.runner import (
     run_orange_attack_experiment, 
     run_invisible_attack_experiment,
     run_invisible_attack_suite,
-    run_custom_experiment
+    run_custom_experiment,
+    run_layer_sweep_experiment,
+    run_unicode_layer_sweep
 )
 
 __version__ = "0.1.0"
@@ -50,4 +52,6 @@ __all__ = [
     "run_invisible_attack_experiment",
     "run_invisible_attack_suite",
     "run_custom_experiment",
+    "run_layer_sweep_experiment",
+    "run_unicode_layer_sweep",
 ]

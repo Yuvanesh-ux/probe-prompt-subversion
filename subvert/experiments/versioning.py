@@ -12,16 +12,20 @@ from datetime import datetime
 class ExperimentVersionManager:
     """Manages experiment versions and directory structure."""
     
-    def __init__(self, results_base_dir: str = "../results"):
-        self.results_base_dir = results_base_dir
-        os.makedirs(results_base_dir, exist_ok=True)
+    def __init__(self, results_base_dir: str = None):
+        if results_base_dir is None:
+            package_dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+            results_base_dir = os.path.join(package_dir, "results")
+        self.results_base_dir = os.path.abspath(results_base_dir)
+        os.makedirs(self.results_base_dir, exist_ok=True)
     
     def get_next_version(self) -> str:
         """Get the next available version number (e.g., 'v1', 'v2', 'v3')."""
         existing_versions = self._get_existing_versions()
         if not existing_versions:
             return "v1"
-        max_version = max(existing_versions)
+        # Use sorted list to get the highest version number
+        max_version = existing_versions[-1]  # Last item in sorted list
         next_num = int(max_version[1:]) + 1
         return f"v{next_num}"
     
