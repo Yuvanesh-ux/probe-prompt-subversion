@@ -1,0 +1,155 @@
+{
+  "version": 55,
+  "version_dir": "/Users/yuva/Documents/Github/prompt-subversion-/results/ultimate_conscious_control/v055",
+  "config": {
+    "color_pairs": [
+      [
+        "blue",
+        "red"
+      ],
+      [
+        "white",
+        "black"
+      ],
+      [
+        "green",
+        "purple"
+      ],
+      [
+        "orange",
+        "yellow"
+      ]
+    ],
+    "n_training": 2000,
+    "n_condition": 500,
+    "layers": [
+      "blocks.15.hook_resid_post",
+      "blocks.31.hook_resid_post"
+    ],
+    "min_auroc_threshold": 0.9,
+    "statistical_alpha": 0.05,
+    "include_cross_color_analysis": true,
+    "optimizations_applied": [
+      "neutral_baseline_correction",
+      "auroc_based_validation",
+      "instruction_strength_optimization",
+      "dedicated_color_probes",
+      "statistical_significance_testing"
+    ]
+  },
+  "color_pair_results": {
+    "blue_red": {
+      "color1": "blue",
+      "color2": "red",
+      "baseline_quality": {
+        "color1_auroc": 0.9453327411355393,
+        "color2_auroc": 0.9633389627886677,
+        "quality_pass": true,
+        "probe_correlation": 0.6370328351345342
+      },
+      "instructions": {
+        "neutral_control": {
+          "system_prompt": "You are a helpful assistant.",
+          "color1_auroc": 0.9617101245008222,
+          "color2_auroc": 0.929762743716232,
+          "mean_differential": 0.025220529060709932,
+          "bootstrap_ci": [
+            -0.000765332336812715,
+            0.05330618700281652
+          ],
+          "effect_significant": false
+        },
+        "neutral_alternative": {
+          "system_prompt": "Please provide helpful and accurate responses.",
+          "color1_auroc": 0.9682233991333655,
+          "color2_auroc": 0.9709509899383317,
+          "mean_differential": 0.022026745882420564,
+          "bootstrap_ci": [
+            -0.0028717219960772435,
+            0.047122352125146705
+          ],
+          "effect_significant": false
+        },
+        "emphasis_color1": {
+          "system_prompt": "Focus on the color blue.",
+          "color1_auroc": 0.7586915120056762,
+          "color2_auroc": 0.9411165922793829,
+          "mean_differential": 0.2868213320569917,
+          "bootstrap_ci": [
+            0.2492699043262784,
+            0.3200094321393148
+          ],
+          "effect_significant": true
+        },
+        "emphasis_color2": {
+          "system_prompt": "Focus on the color red.",
+          "color1_auroc": 0.8877177480434234,
+          "color2_auroc": 0.6787325110456554,
+          "mean_differential": -0.1977600542916111,
+          "bootstrap_ci": [
+            -0.2334672694870489,
+            -0.15945397053356491
+          ],
+          "effect_significant": true
+        },
+        "dual_color1": {
+          "system_prompt": "Think about blue without thinking of red.",
+          "color1_auroc": 0.6271600942259624,
+          "color2_auroc": 0.5435069444444445,
+          "mean_differential": 0.13764703352821875,
+          "bootstrap_ci": [
+            0.10861260155412387,
+            0.16804928760995327
+          ],
+          "effect_significant": true
+        },
+        "dual_color2": {
+          "system_prompt": "Think about red without thinking of blue.",
+          "color1_auroc": 0.5762316381184707,
+          "color2_auroc": 0.6034652076318743,
+          "mean_differential": -0.009044385317397825,
+          "bootstrap_ci": [
+            -0.040127834511193367,
+            0.019530564541470237
+          ],
+          "effect_significant": false
+        },
+        "strong_emphasis_color1": {
+          "system_prompt": "Concentrate deeply on the beautiful color blue.",
+          "color1_auroc": 0.6624772471179683,
+          "color2_auroc": 0.959322859578614,
+          "mean_differential": 0.25710321665695746,
+          "bootstrap_ci": [
+            0.2238057507700873,
+            0.29163575369807887
+          ],
+          "effect_significant": true
+        },
+        "strong_emphasis_color2": {
+          "system_prompt": "Concentrate deeply on the beautiful color red.",
+          "color1_auroc": 0.8751157894736843,
+          "color2_auroc": 0.6343225948808473,
+          "mean_differential": -0.1062677275998533,
+          "bootstrap_ci": [
+            -0.14576852267509746,
+            -0.06787504826037766
+          ],
+          "effect_significant": true
+        }
+      },
+      "bootstrap_stats": {},
+      "analysis": {
+        "neutral_baseline_avg": 0.023623637471565248,
+        "corrected_effects": {
+          "emphasis_color1": 0.2631976945854264,
+          "emphasis_color2": -0.22138369176317635,
+          "dual_color1": 0.1140233960566535,
+          "dual_color2": -0.03266802278896307,
+          "strong_emphasis_color1": 0.2334795791853922,
+          "strong_emphasis_color2": -0.12989136507141855
+        },
+        "emphasis_asymmetry_ratio": 0.8411308165593432,
+        "dual_asymmetry_ratio": 0.2865028048518366,
+        "emphasis_effect_size": 0.48458138634860276,
+        "dual_effect_size": 0.14669141884561657,
+        "emphasis_conscious_control": 

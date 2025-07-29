@@ -1,0 +1,39 @@
+{
+  "color_pairs": [
+    [
+      "blue",
+      "red"
+    ],
+    [
+      "white",
+      "black"
+    ],
+    [
+      "green",
+      "purple"
+    ],
+    [
+      "orange",
+      "yellow"
+    ]
+  ],
+  "n_training": 2000,
+  "n_condition": 500,
+  "layers": [
+    "blocks.15.hook_resid_post",
+    "blocks.31.hook_resid_post"
+  ],
+  "min_auroc_threshold": 0.9,
+  "statistical_alpha": 0.05,
+  "include_cross_color_analysis": true,
+  "optimizations_applied": [
+    "neutral_baseline_correction",
+    "auroc_based_validation",
+    "instruction_strength_optimization",
+    "dedicated_color_probes",
+    "statistical_significance_testing"
+  ],
+  "version": "v53",
+  "timestamp": "2025-07-28T08:55:46.262383",
+  "created_at": "2025-07-28 08:55:46"
+}

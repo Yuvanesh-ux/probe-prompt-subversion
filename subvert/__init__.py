@@ -23,6 +23,23 @@ from .experiments.runner import (
     run_layer_sweep_experiment,
     run_unicode_layer_sweep
 )
+from .experiments.conscious_control import (
+    run_dual_probe_test,
+    run_conscious_control_pilot,
+    run_conscious_control_experiment
+)
+from .experiments.conscious_control_diagnostics import (
+    run_neutral_control_baseline,
+    run_baseline_quality_investigation,
+    run_instruction_strength_analysis
+)
+from .experiments.color_pair_analysis import (
+    run_color_pair_analysis,
+    run_quick_color_pair_test
+)
+from .experiments.ultimate_conscious_control import (
+    run_ultimate_conscious_control_experiment
+)
 
 __version__ = "0.1.0"
 __author__ = "Yuvanesh Anand"
@@ -54,4 +71,21 @@ __all__ = [
     "run_custom_experiment",
     "run_layer_sweep_experiment",
     "run_unicode_layer_sweep",
+    
+    # Conscious control experiments
+    "run_dual_probe_test",
+    "run_conscious_control_pilot", 
+    "run_conscious_control_experiment",
+    
+    # Conscious control diagnostics
+    "run_neutral_control_baseline",
+    "run_baseline_quality_investigation",
+    "run_instruction_strength_analysis",
+    
+    # Color pair analysis
+    "run_color_pair_analysis",
+    "run_quick_color_pair_test",
+    
+    # Ultimate experiment
+    "run_ultimate_conscious_control_experiment",
 ]
