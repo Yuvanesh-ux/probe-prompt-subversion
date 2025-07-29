@@ -4,6 +4,7 @@ Main experiment runner CLI for Subvert.
 """
 
 import argparse
+import logging
 import sys
 import os
 from pathlib import Path
@@ -11,6 +12,9 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent.parent))
 
 from subvert import ExperimentRunner
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 def create_parser():
     parser = argparse.ArgumentParser(
@@ -131,10 +135,9 @@ def main():
     parser = create_parser()
     args = parser.parse_args()
     if args.verbose:
-        import logging
-        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    print("Subvert Experiment Runner")
-    print("=" * 50)
+        logging.getLogger().setLevel(logging.DEBUG)
+    logger.info("Subvert Experiment Runner")
+    logger.info("=" * 50)
     if args.description:
         description = args.description
     else:
@@ -152,23 +155,23 @@ def main():
         red_team_prompt = predefined_prompts[args.experiment]
     else:
         red_team_prompt = predefined_prompts["baseline"]
-    print(f"Experiment: {args.experiment}")
-    print(f"Description: {description}")
-    print(f"Model: {args.model_name}")
-    print(f"Hook: {args.hook_point}")
-    print(f"Dataset: {args.n_prompts} prompts")
-    print(f"Max tokens: {args.max_tokens}")
-    print(f"Red-team prompt: {red_team_prompt[:60]}...")
-    print(f"Deployment prompt: {args.deployment_prompt}")
-    print(f"Output: {args.output_dir}")
+    logger.info(f"Experiment: {args.experiment}")
+    logger.info(f"Description: {description}")
+    logger.info(f"Model: {args.model_name}")
+    logger.info(f"Hook: {args.hook_point}")
+    logger.info(f"Dataset: {args.n_prompts} prompts")
+    logger.info(f"Max tokens: {args.max_tokens}")
+    logger.info(f"Red-team prompt: {red_team_prompt[:60]}...")
+    logger.info(f"Deployment prompt: {args.deployment_prompt}")
+    logger.info(f"Output: {args.output_dir}")
     if args.dry_run:
-        print("\nDry run mode - configuration verified!")
+        logger.info("\nDry run mode - configuration verified!")
         return 0
-    print("\n" + "=" * 50)
+    logger.info("\n" + "=" * 50)
     try:
         prompts_file = args.prompts_file or f"prompts/scaled_prompts_{args.n_prompts}.json"
         runner = ExperimentRunner(prompts_file)
-        print(f"Starting experiment...")
+        logger.info(f"Starting experiment...")
         results = runner.run_experiment(
             description=description,
             red_team_prompt=red_team_prompt,
@@ -176,22 +179,22 @@ def main():
             hook_point=args.hook_point,
             max_tokens=args.max_tokens
         )
-        print("\n" + "=" * 50)
-        print("EXPERIMENT COMPLETED!")
-        print(f"Version: {results['version']}")
-        print(f"Results: {results['version_dir']}")
+        logger.info("\n" + "=" * 50)
+        logger.info("EXPERIMENT COMPLETED!")
+        logger.info(f"Version: {results['version']}")
+        logger.info(f"Results: {results['version_dir']}")
         experiment_results = results['results']
-        print(f"Training AUROC: {experiment_results['train_auroc']:.4f}")
-        print(f"Deployment AUROC: {experiment_results['deploy_auroc']:.4f}")
-        print(f"AUROC Drop: {experiment_results['auroc_drop_pp']:.1f}pp")
+        logger.info(f"Training AUROC: {experiment_results['train_auroc']:.4f}")
+        logger.info(f"Deployment AUROC: {experiment_results['deploy_auroc']:.4f}")
+        logger.info(f"AUROC Drop: {experiment_results['auroc_drop_pp']:.1f}pp")
         success_icon = "YES" if experiment_results['success'] else "NO"
-        print(f"Attack Success: {success_icon} {experiment_results['success']}")
+        logger.info(f"Attack Success: {success_icon} {experiment_results['success']}")
         return 0
     except KeyboardInterrupt:
-        print("\nExperiment interrupted by user")
+        logger.info("\nExperiment interrupted by user")
         return 130
     except Exception as e:
-        print(f"\nExperiment failed: {e}")
+        logger.error(f"\nExperiment failed: {e}")
         if args.verbose:
             import traceback
             traceback.print_exc()
