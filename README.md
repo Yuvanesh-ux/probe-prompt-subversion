@@ -1,4 +1,4 @@
-# Subvert: Linear Probe Vulnerability Research
+Linear Probe Vulnerability
 
 Defensive AI safety research investigating vulnerabilities in linear probes through adversarial prompt manipulation. This codebase demonstrates how probe-based safety mechanisms can be systematically compromised during training, causing failures during deployment.
 
