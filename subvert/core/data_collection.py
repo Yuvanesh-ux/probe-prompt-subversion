@@ -1,5 +1,20 @@
 """
-Modal-only data collection for probe sabotage experiments.
+Modal-based serverless data collection for probe sabotage experiments.
+
+This module provides cloud-based data collection using Modal's serverless GPU infrastructure.
+It handles model loading, prompt processing, and activation extraction from transformer layers
+for both training and deployment phases of probe sabotage experiments.
+
+The collection process:
+1. Loads Llama-2-7B-chat model on H100 GPU
+2. Processes prompts with specified system prompts  
+3. Extracts activations from specified transformer layers
+4. Returns activation tensors for probe training/evaluation
+
+Functions:
+    collect_activations_remote: Core Modal function for activation extraction
+    collect_training_data: Collect activations with adversarial prompts
+    collect_deployment_data: Collect activations with clean prompts
 """
 
 import modal
@@ -48,6 +63,31 @@ def collect_activations_remote(
     system_prompt: str, 
     hook_point: str = "blocks.31.hook_resid_post"
 ) -> Dict[str, torch.Tensor]:
+    """
+    Collect neural activations from Llama-2-7B model using Modal serverless infrastructure.
+    
+    This function runs on Modal's cloud GPUs to extract transformer activations from specified
+    layers. It processes a batch of prompts with a given system prompt and returns the
+    activation tensors needed for probe training and evaluation.
+    
+    Args:
+        prompts (List[str]): List of input prompts to process
+        system_prompt (str): System prompt prepended to each user prompt (e.g., adversarial 
+            instructions for training phase or clean instructions for deployment)
+        hook_point (str): Transformer layer hook point for activation extraction.
+            Format: "blocks.{layer}.hook_resid_post" (default: final layer)
+    
+    Returns:
+        Dict[str, torch.Tensor]: Dictionary containing:
+            - 'activations': Tensor of shape (n_prompts, hidden_dim) with layer activations
+            - 'labels': Binary tensor indicating elephant mentions (1) or not (0)
+            - 'prompts': Original prompts for reference
+            - 'metadata': Dict with system_prompt, hook_point, and processing info
+    
+    Raises:
+        RuntimeError: If model loading or processing fails
+        torch.cuda.OutOfMemoryError: If batch size exceeds GPU memory
+    """
     from transformer_lens import HookedTransformer
     from transformers import AutoModelForCausalLM, AutoTokenizer
     import torch

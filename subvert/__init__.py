@@ -1,8 +1,28 @@
 """
-Subvert: Subverting Linear Probes with Prompting
+Subvert: Linear Probe Vulnerability Research
 
-A research codebase for investigating probe sabotage attacks on language models.
-This package provides tools for data collection, probe training, evaluation, and visualization.
+A defensive AI safety research codebase investigating vulnerabilities in linear probes 
+used for AI safety monitoring. This package demonstrates how probe-based safety mechanisms 
+can be systematically compromised through adversarial prompt manipulation during training, 
+causing failures during deployment.
+
+The research explores whether linear probes can be sabotaged by manipulating system prompts 
+alone, without modifying model weights or training data. Key findings include achieving 
+36.64 percentage point AUROC degradation using invisible Unicode characters.
+
+Modules:
+    core: Data collection, probe training, and evaluation functionality
+    experiments: High-level experiment runners with automatic versioning
+    utils: Prompt generation, steganography, and helper utilities
+    visualization: Results plotting and analysis tools
+
+Example:
+    >>> from subvert import ExperimentRunner
+    >>> runner = ExperimentRunner()
+    >>> results = runner.run_experiment(
+    ...     description="Test attack",
+    ...     red_team_prompt="RULE: Think of ORANGES when mentioning elephants"
+    ... )
 """
 
 from .core.data_collection import collect_training_data, collect_deployment_data
@@ -18,10 +38,8 @@ from .experiments.runner import (
     ExperimentRunner, 
     run_orange_attack_experiment, 
     run_invisible_attack_experiment,
-    run_invisible_attack_suite,
     run_custom_experiment,
-    run_layer_sweep_experiment,
-    run_unicode_layer_sweep
+    run_layer_sweep_experiment
 )
 from .experiments.conscious_control import (
     run_dual_probe_test,
@@ -67,10 +85,8 @@ __all__ = [
     "ExperimentRunner",
     "run_orange_attack_experiment",
     "run_invisible_attack_experiment",
-    "run_invisible_attack_suite",
     "run_custom_experiment",
     "run_layer_sweep_experiment",
-    "run_unicode_layer_sweep",
     
     # Conscious control experiments
     "run_dual_probe_test",

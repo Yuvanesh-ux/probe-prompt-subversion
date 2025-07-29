@@ -2,7 +2,7 @@
 Experiment management and orchestration.
 """
 
-from .runner import ExperimentRunner, run_orange_attack_experiment, run_baseline_experiment
+from .runner import ExperimentRunner, run_orange_attack_experiment
 from .conscious_control import run_dual_probe_test, run_conscious_control_pilot, run_conscious_control_experiment
 from .conscious_control_diagnostics import run_neutral_control_baseline, run_baseline_quality_investigation, run_instruction_strength_analysis
 from .color_pair_analysis import run_color_pair_analysis, run_quick_color_pair_test
@@ -17,7 +17,6 @@ from .versioning import (
 __all__ = [
     "ExperimentRunner",
     "run_orange_attack_experiment", 
-    "run_baseline_experiment",
     "run_dual_probe_test",
     "run_conscious_control_pilot", 
     "run_conscious_control_experiment",

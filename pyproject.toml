@@ -1,9 +1,22 @@
 [project]
 name = "subvert"
 version = "0.1.0"
-description = "Add your description here"
+description = "Defensive AI safety research investigating vulnerabilities in linear probes through adversarial prompt manipulation"
 readme = "README.md"
 requires-python = ">=3.11"
+authors = [
+    {name = "Yuvanesh Anand", email = "yuvanesh@example.com"}
+]
+license = {text = "MIT"}
+keywords = ["ai-safety", "interpretability", "adversarial-attacks", "linear-probes", "defensive-research"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
 dependencies = [
     "matplotlib>=3.10.3",
     "modal>=1.1.0",
