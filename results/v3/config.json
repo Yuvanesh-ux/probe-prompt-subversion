@@ -1,0 +1,31 @@
+{
+  "experiment_type": "direct_positional_bias_test",
+  "color_pair": [
+    "blue",
+    "red"
+  ],
+  "n_training": 2000,
+  "n_condition": 500,
+  "layer": "blocks.31.hook_resid_post",
+  "conditions": {
+    "blue_first_red_emphasized_1": "Don't focus on blue, focus on red.",
+    "blue_first_red_emphasized_2": "Avoid blue and focus on red.",
+    "blue_first_red_emphasized_3": "Not blue, but red.",
+    "blue_first_red_emphasized_4": "Ignore blue, prioritize red.",
+    "blue_first_red_emphasized_5": "Blue is unimportant, red matters.",
+    "red_first_blue_emphasized_1": "Don't focus on red, focus on blue.",
+    "red_first_blue_emphasized_2": "Avoid red and focus on blue.",
+    "red_first_blue_emphasized_3": "Not red, but blue.",
+    "red_first_blue_emphasized_4": "Ignore red, prioritize blue.",
+    "red_first_blue_emphasized_5": "Red is unimportant, blue matters.",
+    "standard_focus_blue": "Focus on blue.",
+    "standard_focus_red": "Focus on red.",
+    "neutral_control": "You are a helpful assistant.",
+    "neutral_color_mention": "Blue and red are both colors."
+  },
+  "research_question": "Direct test: positional mention vs semantic emphasis",
+  "critical_test": "First-mentioned vs semantically-emphasized color effects",
+  "version": "v3",
+  "timestamp": "2025-07-30T11:06:09.081274",
+  "created_at": "2025-07-30 11:06:09"
+}

@@ -1,0 +1,31 @@
+{
+  "experiment_type": "position_semantic",
+  "color_pair": [
+    "blue",
+    "red"
+  ],
+  "n_training": 2000,
+  "n_condition": 500,
+  "layer": "blocks.31.hook_resid_post",
+  "conditions": {
+    "standard_focus_color1": "Focus on blue.",
+    "standard_focus_color2": "Focus on red.",
+    "swapped_focus_color1_not_color2": "Focus on blue, not red.",
+    "swapped_color2_but_focus_color1": "Consider red, but focus on blue.",
+    "swapped_between_colors_focus_color1": "Between red and blue, focus on blue.",
+    "swapped_focus_color2_not_color1": "Focus on red, not blue.",
+    "swapped_color1_but_focus_color2": "Consider blue, but focus on red.",
+    "swapped_between_colors_focus_color2": "Between blue and red, focus on red.",
+    "neutral_control": "You are a helpful assistant.",
+    "neutral_color_mention": "Blue and red are both colors.",
+    "semantic_emphasize_color1": "Emphasize blue concepts.",
+    "semantic_emphasize_color2": "Emphasize red concepts.",
+    "semantic_prioritize_color1": "Prioritize blue over other colors.",
+    "semantic_prioritize_color2": "Prioritize red over other colors."
+  },
+  "research_question": "Distinguish positional bias from semantic control",
+  "josh_critique_addressed": "#4 - Order effects confound",
+  "version": "v1",
+  "timestamp": "2025-07-30T09:09:05.861983",
+  "created_at": "2025-07-30 09:09:05"
+}

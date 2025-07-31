@@ -1,0 +1,218 @@
+{
+  "version": 1,
+  "config": {
+    "experiment_type": "position_semantic",
+    "color_pair": [
+      "blue",
+      "red"
+    ],
+    "n_training": 2000,
+    "n_condition": 500,
+    "layer": "blocks.31.hook_resid_post",
+    "conditions": {
+      "standard_focus_color1": "Focus on blue.",
+      "standard_focus_color2": "Focus on red.",
+      "swapped_focus_color1_not_color2": "Focus on blue, not red.",
+      "swapped_color2_but_focus_color1": "Consider red, but focus on blue.",
+      "swapped_between_colors_focus_color1": "Between red and blue, focus on blue.",
+      "swapped_focus_color2_not_color1": "Focus on red, not blue.",
+      "swapped_color1_but_focus_color2": "Consider blue, but focus on red.",
+      "swapped_between_colors_focus_color2": "Between blue and red, focus on red.",
+      "neutral_control": "You are a helpful assistant.",
+      "neutral_color_mention": "Blue and red are both colors.",
+      "semantic_emphasize_color1": "Emphasize blue concepts.",
+      "semantic_emphasize_color2": "Emphasize red concepts.",
+      "semantic_prioritize_color1": "Prioritize blue over other colors.",
+      "semantic_prioritize_color2": "Prioritize red over other colors."
+    },
+    "research_question": "Distinguish positional bias from semantic control",
+    "josh_critique_addressed": "#4 - Order effects confound"
+  },
+  "baseline_quality": {
+    "color1_auroc": 0.9715374935228367,
+    "color2_auroc": 0.966106148187073
+  },
+  "condition_results": {
+    "standard_focus_color1": {
+      "instruction": "Focus on blue.",
+      "color1_auroc": 0.6664938593825417,
+      "color2_auroc": 0.9031158714703019,
+      "mean_differential": 0.11574462966753013,
+      "bootstrap_ci": [
+        0.08554641546898083,
+        0.14676436620572758
+      ],
+      "effect_significant": true
+    },
+    "standard_focus_color2": {
+      "instruction": "Focus on red.",
+      "color1_auroc": 0.8843034196353253,
+      "color2_auroc": 0.6983174909774817,
+      "mean_differential": -0.09538624325701343,
+      "bootstrap_ci": [
+        -0.12985177173771234,
+        -0.06248480760896158
+      ],
+      "effect_significant": true
+    },
+    "swapped_focus_color1_not_color2": {
+      "instruction": "Focus on blue, not red.",
+      "color1_auroc": 0.7209212121212121,
+      "color2_auroc": 0.6176175686581399,
+      "mean_differential": 0.0631394674274072,
+      "bootstrap_ci": [
+        0.034828322927034375,
+        0.0938946839667527
+      ],
+      "effect_significant": true
+    },
+    "swapped_color2_but_focus_color1": {
+      "instruction": "Consider red, but focus on blue.",
+      "color1_auroc": 0.6523473620247814,
+      "color2_auroc": 0.6276078431372549,
+      "mean_differential": 0.10946593026387848,
+      "bootstrap_ci": [
+        0.07716794407059896,
+        0.1373245058834388
+      ],
+      "effect_significant": true
+    },
+    "swapped_between_colors_focus_color1": {
+      "instruction": "Between red and blue, focus on blue.",
+      "color1_auroc": 0.6644891857196249,
+      "color2_auroc": 0.7814514452069037,
+      "mean_differential": 0.08398115317097608,
+      "bootstrap_ci": [
+        0.058028064954257,
+        0.11085048899951293
+      ],
+      "effect_significant": true
+    },
+    "swapped_focus_color2_not_color1": {
+      "instruction": "Focus on red, not blue.",
+      "color1_auroc": 0.6516544325239977,
+      "color2_auroc": 0.6911929771657369,
+      "mean_differential": -0.03819229638830546,
+      "bootstrap_ci": [
+        -0.0674235005641955,
+        -0.008186873441060118
+      ],
+      "effect_significant": true
+    },
+    "swapped_color1_but_focus_color2": {
+      "instruction": "Consider blue, but focus on red.",
+      "color1_auroc": 0.6266656740862055,
+      "color2_auroc": 0.6845349563046192,
+      "mean_differential": -0.1285651111957289,
+      "bootstrap_ci": [
+        -0.16224146915120033,
+        -0.09690492488269747
+      ],
+      "effect_significant": true
+    },
+    "swapped_between_colors_focus_color2": {
+      "instruction": "Between blue and red, focus on red.",
+      "color1_auroc": 0.7795287876423779,
+      "color2_auroc": 0.6555757308076098,
+      "mean_differential": -0.05240298325564859,
+      "bootstrap_ci": [
+        -0.08138562895511406,
+        -0.02124752807704959
+      ],
+      "effect_significant": true
+    },
+    "neutral_control": {
+      "instruction": "You are a helpful assistant.",
+      "color1_auroc": 0.9623404255319149,
+      "color2_auroc": 0.9707075624797143,
+      "mean_differential": 0.02010713909047826,
+      "bootstrap_ci": [
+        -0.00518944145158619,
+        0.04456137790636842
+      ],
+      "effect_significant": false
+    },
+    "neutral_color_mention": {
+      "instruction": "Blue and red are both colors.",
+      "color1_auroc": 0.6916161775119993,
+      "color2_auroc": 0.6821022115139763,
+      "mean_differential": 0.034277405871947005,
+      "bootstrap_ci": [
+        0.006601320380864254,
+        0.06196841682020591
+      ],
+      "effect_significant": true
+    },
+    "semantic_emphasize_color1": {
+      "instruction": "Emphasize blue concepts.",
+      "color1_auroc": 0.6603770445431704,
+      "color2_auroc": 0.941899616318221,
+      "mean_differential": 0.08379059002420347,
+      "bootstrap_ci": [
+        0.056593436907578225,
+        0.11293138482678823
+      ],
+      "effect_significant": true
+    },
+    "semantic_emphasize_color2": {
+      "instruction": "Emphasize red concepts.",
+      "color1_auroc": 0.9773758865248228,
+      "color2_auroc": 0.67233238904627,
+      "mean_differential": -0.03244733884515369,
+      "bootstrap_ci": [
+        -0.06058977192651032,
+        -0.0035965126880157716
+      ],
+      "effect_significant": true
+    },
+    "semantic_prioritize_color1": {
+      "instruction": "Prioritize blue over other colors.",
+      "color1_auroc": 0.6777513683246472,
+      "color2_auroc": 0.8347461489381095,
+      "mean_differential": 0.12916782579525413,
+      "bootstrap_ci": [
+        0.09700224276044413,
+        0.16193765267303548
+      ],
+      "effect_significant": true
+    },
+    "semantic_prioritize_color2": {
+      "instruction": "Prioritize red over other colors.",
+      "color1_auroc": 0.8649263157894737,
+      "color2_auroc": 0.6997569444444445,
+      "mean_differential": -0.1574878801415338,
+      "bootstrap_ci": [
+        -0.19358088746471497,
+        -0.12240665012794752
+      ],
+      "effect_significant": true
+    }
+  },
+  "position_analysis": {
+    "neutral_baseline": 0.027192272481212632,
+    "corrected_effects": {
+      "standard_focus_color1": 0.0885523571863175,
+      "standard_focus_color2": -0.12257851573822606,
+      "swapped_focus_color1_not_color2": 0.03594719494619457,
+      "swapped_color2_but_focus_color1": 0.08227365778266585,
+      "swapped_between_colors_focus_color1": 0.056788880689763455,
+      "swapped_focus_color2_not_color1": -0.06538456886951809,
+      "swapped_color1_but_focus_color2": -0.15575738367694153,
+      "swapped_between_colors_focus_color2": -0.07959525573686123,
+      "semantic_emphasize_color1": 0.05659831754299084,
+      "semantic_emphasize_color2": -0.05963961132636632,
+      "semantic_prioritize_color1": 0.1019755533140415,
+      "semantic_prioritize_color2": -0.18468015262274645
+    },
+    "standard_effects": {
+      "color1_focus": 0.0885523571863175,
+      "color2_focus": -0.12257851573822606
+    },
+    "position_swapped_effects": {
+      "color1_emphasis_swapped": 0.03594719494619457,
+      "color2_emphasis_swapped": -0.06538456886951809,
+      "between_colors_color1": 0.056788880689763455,
+      "between_colors_color2": -0.07959525573686123
+    },
+    "semantic_evidence": {
+      "color1_semantic_consistency": 
