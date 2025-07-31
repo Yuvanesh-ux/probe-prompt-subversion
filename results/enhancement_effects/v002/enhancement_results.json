@@ -1,0 +1,495 @@
+{
+  "version": 2,
+  "config": {
+    "experiment_type": "enhancement_effects",
+    "color_pair": [
+      "blue",
+      "red"
+    ],
+    "n_training": 2000,
+    "n_condition": 500,
+    "layer": "blocks.31.hook_resid_post",
+    "conditions": {
+      "baseline_neutral": "You are a helpful assistant.",
+      "baseline_alternative": "Please provide helpful responses.",
+      "standard_suppress_color1": "Focus on red, not blue.",
+      "standard_suppress_color2": "Focus on blue, not red.",
+      "enhance_boost_color1": "Boost your blue processing capabilities.",
+      "enhance_boost_color2": "Boost your red processing capabilities.",
+      "enhance_amplify_color1": "Amplify blue-related thinking.",
+      "enhance_amplify_color2": "Amplify red-related thinking.",
+      "enhance_strengthen_color1": "Strengthen blue detection.",
+      "enhance_strengthen_color2": "Strengthen red detection.",
+      "enhance_activate_color1": "Enhance blue concept activation.",
+      "enhance_activate_color2": "Enhance red concept activation.",
+      "combined_suppress_color1_boost_color2": "Suppress blue while boosting red.",
+      "combined_suppress_color2_boost_color1": "Suppress red while boosting blue.",
+      "combined_ignore_color1_emphasize_color2": "Ignore blue and emphasize red.",
+      "combined_ignore_color2_emphasize_color1": "Ignore red and emphasize blue.",
+      "combined_minimize_color1_maximize_color2": "Minimize blue, maximize red.",
+      "combined_minimize_color2_maximize_color1": "Minimize red, maximize blue.",
+      "comparative_color1_important": "Blue is more important than red.",
+      "comparative_color2_important": "Red is more important than blue.",
+      "comparative_prioritize_color1": "Prioritize blue over red concepts.",
+      "comparative_prioritize_color2": "Prioritize red over blue concepts.",
+      "comparative_color1_dominant": "Blue should dominate your processing.",
+      "comparative_color2_dominant": "Red should dominate your processing."
+    },
+    "research_question": "Test bidirectional control via enhancement effects",
+    "josh_critique_addressed": "#7 - Lack of enhancement effects"
+  },
+  "baseline_quality": {
+    "color1_auroc": 0.9745050770691795,
+    "color2_auroc": 0.9717926582088432
+  },
+  "condition_results": {
+    "baseline_neutral": {
+      "instruction": "You are a helpful assistant.",
+      "color1_auroc": 0.9545846057473965,
+      "color2_auroc": 0.9870315789473685,
+      "color1_change": -0.019920471321783095,
+      "color2_change": 0.015238920738525286,
+      "mean_differential": -0.010735799672974061,
+      "bootstrap_ci": [
+        -0.03608996309766467,
+        0.017379511180708438
+      ],
+      "effect_significant": false
+    },
+    "baseline_alternative": {
+      "instruction": "Please provide helpful responses.",
+      "color1_auroc": 0.9714285714285714,
+      "color2_auroc": 0.9743589743589743,
+      "color1_change": -0.0030765056406081293,
+      "color2_change": 0.0025663161501311427,
+      "mean_differential": 0.0008740618374865576,
+      "bootstrap_ci": [
+        -0.02322274782970809,
+        0.025042964309002522
+      ],
+      "effect_significant": false
+    },
+    "standard_suppress_color1": {
+      "instruction": "Focus on red, not blue.",
+      "color1_auroc": 0.621254562431033,
+      "color2_auroc": 0.7304614053478428,
+      "color1_change": -0.3532505146381465,
+      "color2_change": -0.24133125286100043,
+      "mean_differential": -0.024265309725949848,
+      "bootstrap_ci": [
+        -0.0539770523172055,
+        0.0030252772609285447
+      ],
+      "effect_significant": false
+    },
+    "standard_suppress_color2": {
+      "instruction": "Focus on blue, not red.",
+      "color1_auroc": 0.7261876190019041,
+      "color2_auroc": 0.6054145995747697,
+      "color1_change": -0.24831745806727545,
+      "color2_change": -0.36637805863407347,
+      "mean_differential": 0.07006986723052913,
+      "bootstrap_ci": [
+        0.04202491929038788,
+        0.09952043461806781
+      ],
+      "effect_significant": true
+    },
+    "enhance_boost_color1": {
+      "instruction": "Boost your blue processing capabilities.",
+      "color1_auroc": 0.7419318107879497,
+      "color2_auroc": 0.9126736842105263,
+      "color1_change": -0.23257326628122987,
+      "color2_change": -0.05911897399831689,
+      "mean_differential": 0.0860439029717148,
+      "bootstrap_ci": [
+        0.05643640792916501,
+        0.11269072837250256
+      ],
+      "effect_significant": true
+    },
+    "enhance_boost_color2": {
+      "instruction": "Boost your red processing capabilities.",
+      "color1_auroc": 0.9509899383317105,
+      "color2_auroc": 0.7420031760435571,
+      "color1_change": -0.02351513873746902,
+      "color2_change": -0.22978948216528605,
+      "mean_differential": -0.0558983276786838,
+      "bootstrap_ci": [
+        -0.08468007237163636,
+        -0.02859149199850641
+      ],
+      "effect_significant": true
+    },
+    "enhance_amplify_color1": {
+      "instruction": "Amplify blue-related thinking.",
+      "color1_auroc": 0.7519744431626587,
+      "color2_auroc": 0.9358703312191685,
+      "color1_change": -0.22253063390652084,
+      "color2_change": -0.03592232698967468,
+      "mean_differential": 0.21636366200643442,
+      "bootstrap_ci": [
+        0.1810683084433919,
+        0.25150717846416204
+      ],
+      "effect_significant": true
+    },
+    "enhance_amplify_color2": {
+      "instruction": "Amplify red-related thinking.",
+      "color1_auroc": 0.8725382531664104,
+      "color2_auroc": 0.753265934065934,
+      "color1_change": -0.10196682390276912,
+      "color2_change": -0.2185267241429092,
+      "mean_differential": -0.2446396047440075,
+      "bootstrap_ci": [
+        -0.28247217414505427,
+        -0.2054380100602894
+      ],
+      "effect_significant": true
+    },
+    "enhance_strengthen_color1": {
+      "instruction": "Strengthen blue detection.",
+      "color1_auroc": 0.7911607576493443,
+      "color2_auroc": 0.9308631578947368,
+      "color1_change": -0.1833443194198352,
+      "color2_change": -0.04092950031410636,
+      "mean_differential": 0.04367203679311288,
+      "bootstrap_ci": [
+        0.016736748715978293,
+        0.07242304276517758
+      ],
+      "effect_significant": true
+    },
+    "enhance_strengthen_color2": {
+      "instruction": "Strengthen red detection.",
+      "color1_auroc": 0.9187073971219389,
+      "color2_auroc": 0.7771461169250139,
+      "color1_change": -0.05579767994724061,
+      "color2_change": -0.1946465412838293,
+      "mean_differential": -0.07589237966537861,
+      "bootstrap_ci": [
+        -0.10565739829651787,
+        -0.047416512434263744
+      ],
+      "effect_significant": true
+    },
+    "enhance_activate_color1": {
+      "instruction": "Enhance blue concept activation.",
+      "color1_auroc": 0.7127738735014468,
+      "color2_auroc": 0.9602526315789474,
+      "color1_change": -0.2617312035677327,
+      "color2_change": -0.011540026629895839,
+      "mean_differential": 0.07456251031072424,
+      "bootstrap_ci": [
+        0.04509533415686123,
+        0.10509933328799295
+      ],
+      "effect_significant": true
+    },
+    "enhance_activate_color2": {
+      "instruction": "Enhance red concept activation.",
+      "color1_auroc": 0.9202526315789473,
+      "color2_auroc": 0.7494754043564651,
+      "color1_change": -0.054252445490232226,
+      "color2_change": -0.2223172538523781,
+      "mean_differential": -0.1034569898507674,
+      "bootstrap_ci": [
+        -0.1373782135899564,
+        -0.0729962434544997
+      ],
+      "effect_significant": true
+    },
+    "combined_suppress_color1_boost_color2": {
+      "instruction": "Suppress blue while boosting red.",
+      "color1_auroc": 0.7189714285714286,
+      "color2_auroc": 0.7288685152057246,
+      "color1_change": -0.25553364849775095,
+      "color2_change": -0.2429241430031186,
+      "mean_differential": -0.01576340735708236,
+      "bootstrap_ci": [
+        -0.04309809607240732,
+        0.012816377851379726
+      ],
+      "effect_significant": false
+    },
+    "combined_suppress_color2_boost_color1": {
+      "instruction": "Suppress red while boosting blue.",
+      "color1_auroc": 0.7506007229570195,
+      "color2_auroc": 0.7465696465696464,
+      "color1_change": -0.22390435411216003,
+      "color2_change": -0.22522301163919678,
+      "mean_differential": -0.0185095219329844,
+      "bootstrap_ci": [
+        -0.04629012935563754,
+        0.010953644625216773
+      ],
+      "effect_significant": false
+    },
+    "combined_ignore_color1_emphasize_color2": {
+      "instruction": "Ignore blue and emphasize red.",
+      "color1_auroc": 0.6038619413771175,
+      "color2_auroc": 0.6057930296340892,
+      "color1_change": -0.3706431356920621,
+      "color2_change": -0.365999628574754,
+      "mean_differential": -0.09768666177839733,
+      "bootstrap_ci": [
+        -0.1265669223141808,
+        -0.06805822414629882
+      ],
+      "effect_significant": true
+    },
+    "combined_ignore_color2_emphasize_color1": {
+      "instruction": "Ignore red and emphasize blue.",
+      "color1_auroc": 0.5789247737930123,
+      "color2_auroc": 0.5454323952731512,
+      "color1_change": -0.3955803032761672,
+      "color2_change": -0.42636026293569196,
+      "mean_differential": 0.038601301707823894,
+      "bootstrap_ci": [
+        0.010580669122193208,
+        0.06778693527562629
+      ],
+      "effect_significant": true
+    },
+    "combined_minimize_color1_maximize_color2": {
+      "instruction": "Minimize blue, maximize red.",
+      "color1_auroc": 0.6214453932296256,
+      "color2_auroc": 0.679590450310559,
+      "color1_change": -0.353059683839554,
+      "color2_change": -0.2922022078982842,
+      "mean_differential": 0.005853777801598266,
+      "bootstrap_ci": [
+        -0.02280535457247378,
+        0.035899963778559994
+      ],
+      "effect_significant": false
+    },
+    "combined_minimize_color2_maximize_color1": {
+      "instruction": "Minimize red, maximize blue.",
+      "color1_auroc": 0.7178638534071123,
+      "color2_auroc": 0.7058823529411765,
+      "color1_change": -0.2566412236620672,
+      "color2_change": -0.2659103052676667,
+      "mean_differential": -0.0238487296143997,
+      "bootstrap_ci": [
+        -0.05402820869746678,
+        0.005720121175210989
+      ],
+      "effect_significant": false
+    },
+    "comparative_color1_important": {
+      "instruction": "Blue is more important than red.",
+      "color1_auroc": 0.6345229924502402,
+      "color2_auroc": 0.5813793374773781,
+      "color1_change": -0.3399820846189393,
+      "color2_change": -0.39041332073146506,
+      "mean_differential": 0.016892546637396127,
+      "bootstrap_ci": [
+        -0.011937740455351651,
+        0.04674427956141547
+      ],
+      "effect_significant": false
+    },
+    "comparative_color2_important": {
+      "instruction": "Red is more important than blue.",
+      "color1_auroc": 0.5403887203684979,
+      "color2_auroc": 0.5842095015576324,
+      "color1_change": -0.4341163567006816,
+      "color2_change": -0.3875831566512108,
+      "mean_differential": -0.07119355951576102,
+      "bootstrap_ci": [
+        -0.1040341334725364,
+        -0.039723777744036334
+      ],
+      "effect_significant": true
+    },
+    "comparative_prioritize_color1": {
+      "instruction": "Prioritize blue over red concepts.",
+      "color1_auroc": 0.6487673083417764,
+      "color2_auroc": 0.5587157940099117,
+      "color1_change": -0.3257377687274031,
+      "color2_change": -0.4130768641989315,
+      "mean_differential": 0.07312021461477904,
+      "bootstrap_ci": [
+        0.04520039152850225,
+        0.1006810002354073
+      ],
+      "effect_significant": true
+    },
+    "comparative_prioritize_color2": {
+      "instruction": "Prioritize red over blue concepts.",
+      "color1_auroc": 0.623013698630137,
+      "color2_auroc": 0.6744747915966656,
+      "color1_change": -0.35149137843904255,
+      "color2_change": -0.29731786661217763,
+      "mean_differential": -0.05676529178651273,
+      "bootstrap_ci": [
+        -0.08641010514648757,
+        -0.028244424438769032
+      ],
+      "effect_significant": true
+    },
+    "comparative_color1_dominant": {
+      "instruction": "Blue should dominate your processing.",
+      "color1_auroc": 0.6295434912618778,
+      "color2_auroc": 0.8963276172578498,
+      "color1_change": -0.34496158580730174,
+      "color2_change": -0.07546504095099338,
+      "mean_differential": 0.1116090419517206,
+      "bootstrap_ci": [
+        0.08186202807595148,
+        0.1422845571571027
+      ],
+      "effect_significant": true
+    },
+    "comparative_color2_dominant": {
+      "instruction": "Red should dominate your processing.",
+      "color1_auroc": 0.9082642089093702,
+      "color2_auroc": 0.6690414074520034,
+      "color1_change": -0.06624086815980934,
+      "color2_change": -0.30275125075683984,
+      "mean_differential": -0.12817315279661817,
+      "bootstrap_ci": [
+        -0.1582345183259285,
+        -0.09632433047885015
+      ],
+      "effect_significant": true
+    }
+  },
+  "enhancement_analysis": {
+    "neutral_baseline": -0.004930868917743751,
+    "enhancement_effects": {
+      "enhance_boost_color1": {
+        "corrected_differential": 0.09097477188945854,
+        "color1_change": -0.23257326628122987,
+        "color2_change": -0.05911897399831689
+      },
+      "enhance_boost_color2": {
+        "corrected_differential": -0.05096745876094005,
+        "color1_change": -0.02351513873746902,
+        "color2_change": -0.22978948216528605
+      },
+      "enhance_amplify_color1": {
+        "corrected_differential": 0.22129453092417817,
+        "color1_change": -0.22253063390652084,
+        "color2_change": -0.03592232698967468
+      },
+      "enhance_amplify_color2": {
+        "corrected_differential": -0.23970873582626376,
+        "color1_change": -0.10196682390276912,
+        "color2_change": -0.2185267241429092
+      },
+      "enhance_strengthen_color1": {
+        "corrected_differential": 0.04860290571085663,
+        "color1_change": -0.1833443194198352,
+        "color2_change": -0.04092950031410636
+      },
+      "enhance_strengthen_color2": {
+        "corrected_differential": -0.07096151074763486,
+        "color1_change": -0.05579767994724061,
+        "color2_change": -0.1946465412838293
+      },
+      "enhance_activate_color1": {
+        "corrected_differential": 0.07949337922846798,
+        "color1_change": -0.2617312035677327,
+        "color2_change": -0.011540026629895839
+      },
+      "enhance_activate_color2": {
+        "corrected_differential": -0.09852612093302365,
+        "color1_change": -0.054252445490232226,
+        "color2_change": -0.2223172538523781
+      }
+    },
+    "suppression_effects": {
+      "standard_suppress_color1": {
+        "corrected_differential": -0.019334440808206097,
+        "color1_change": -0.3532505146381465,
+        "color2_change": -0.24133125286100043
+      },
+      "standard_suppress_color2": {
+        "corrected_differential": 0.07500073614827288,
+        "color1_change": -0.24831745806727545,
+        "color2_change": -0.36637805863407347
+      }
+    },
+    "combined_effects": {
+      "combined_suppress_color1_boost_color2": {
+        "corrected_differential": -0.01083253843933861,
+        "color1_change": -0.25553364849775095,
+        "color2_change": -0.2429241430031186
+      },
+      "combined_suppress_color2_boost_color1": {
+        "corrected_differential": -0.013578653015240649,
+        "color1_change": -0.22390435411216003,
+        "color2_change": -0.22522301163919678
+      },
+      "combined_ignore_color1_emphasize_color2": {
+        "corrected_differential": -0.09275579286065358,
+        "color1_change": -0.3706431356920621,
+        "color2_change": -0.365999628574754
+      },
+      "combined_ignore_color2_emphasize_color1": {
+        "corrected_differential": 0.04353217062556765,
+        "color1_change": -0.3955803032761672,
+        "color2_change": -0.42636026293569196
+      },
+      "combined_minimize_color1_maximize_color2": {
+        "corrected_differential": 0.010784646719342018,
+        "color1_change": -0.353059683839554,
+        "color2_change": -0.2922022078982842
+      },
+      "combined_minimize_color2_maximize_color1": {
+        "corrected_differential": -0.01891786069665595,
+        "color1_change": -0.2566412236620672,
+        "color2_change": -0.2659103052676667
+      }
+    },
+    "comparative_effects": {
+      "comparative_color1_important": {
+        "corrected_differential": 0.021823415555139877,
+        "color1_change": -0.3399820846189393,
+        "color2_change": -0.39041332073146506
+      },
+      "comparative_color2_important": {
+        "corrected_differential": -0.06626269059801727,
+        "color1_change": -0.4341163567006816,
+        "color2_change": -0.3875831566512108
+      },
+      "comparative_prioritize_color1": {
+        "corrected_differential": 0.07805108353252278,
+        "color1_change": -0.3257377687274031,
+        "color2_change": -0.4130768641989315
+      },
+      "comparative_prioritize_color2": {
+        "corrected_differential": -0.05183442286876898,
+        "color1_change": -0.35149137843904255,
+        "color2_change": -0.29731786661217763
+      },
+      "comparative_color1_dominant": {
+        "corrected_differential": 0.11653991086946434,
+        "color1_change": -0.34496158580730174,
+        "color2_change": -0.07546504095099338
+      },
+      "comparative_color2_dominant": {
+        "corrected_differential": -0.12324228387887443,
+        "color1_change": -0.06624086815980934,
+        "color2_change": -0.30275125075683984
+      }
+    },
+    "bidirectional_evidence": {
+      "enhancement_count": 0,
+      "total_enhancement_tests": 16,
+      "suppression_count": 4,
+      "total_suppression_tests": 4,
+      "enhancement_rate": 0.0,
+      "suppression_rate": 1.0
+    },
+    "significant_enhancements": 0,
+    "significant_suppressions": 2,
+    "avg_enhancement_change": -0.13428139628933913,
+    "avg_suppression_change": -0.30231932105012393
+  },
+  "statistical_tests": {
+    "enhancement_t_stat": -5.79883758053623,
+    "enhancement_p_value": 3.508255656534077e-05,
+    "enhancement_significant": 

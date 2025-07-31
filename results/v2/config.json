@@ -1,0 +1,41 @@
+{
+  "experiment_type": "enhancement_effects",
+  "color_pair": [
+    "blue",
+    "red"
+  ],
+  "n_training": 2000,
+  "n_condition": 500,
+  "layer": "blocks.31.hook_resid_post",
+  "conditions": {
+    "baseline_neutral": "You are a helpful assistant.",
+    "baseline_alternative": "Please provide helpful responses.",
+    "standard_suppress_color1": "Focus on red, not blue.",
+    "standard_suppress_color2": "Focus on blue, not red.",
+    "enhance_boost_color1": "Boost your blue processing capabilities.",
+    "enhance_boost_color2": "Boost your red processing capabilities.",
+    "enhance_amplify_color1": "Amplify blue-related thinking.",
+    "enhance_amplify_color2": "Amplify red-related thinking.",
+    "enhance_strengthen_color1": "Strengthen blue detection.",
+    "enhance_strengthen_color2": "Strengthen red detection.",
+    "enhance_activate_color1": "Enhance blue concept activation.",
+    "enhance_activate_color2": "Enhance red concept activation.",
+    "combined_suppress_color1_boost_color2": "Suppress blue while boosting red.",
+    "combined_suppress_color2_boost_color1": "Suppress red while boosting blue.",
+    "combined_ignore_color1_emphasize_color2": "Ignore blue and emphasize red.",
+    "combined_ignore_color2_emphasize_color1": "Ignore red and emphasize blue.",
+    "combined_minimize_color1_maximize_color2": "Minimize blue, maximize red.",
+    "combined_minimize_color2_maximize_color1": "Minimize red, maximize blue.",
+    "comparative_color1_important": "Blue is more important than red.",
+    "comparative_color2_important": "Red is more important than blue.",
+    "comparative_prioritize_color1": "Prioritize blue over red concepts.",
+    "comparative_prioritize_color2": "Prioritize red over blue concepts.",
+    "comparative_color1_dominant": "Blue should dominate your processing.",
+    "comparative_color2_dominant": "Red should dominate your processing."
+  },
+  "research_question": "Test bidirectional control via enhancement effects",
+  "josh_critique_addressed": "#7 - Lack of enhancement effects",
+  "version": "v2",
+  "timestamp": "2025-07-30T09:38:24.104536",
+  "created_at": "2025-07-30 09:38:24"
+}
